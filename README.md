@@ -4,6 +4,18 @@
 
 Rust kit for myself.
 
+# 使用姿势
+
+
+```shell
+cargo add rovkit
+```
+
+```toml
+[dependencies]
+rovkit = "0.0.1"
+```
+
 # 简介
 
 * **项目定位**：一个 Rust 语言的全家桶工具库，提供字符串、时间、JSON、类型转换、HTTP、进程、文件、配置、日志、加密、工具函数等常用功能模块。
