@@ -8,7 +8,7 @@ buildAll: clean
 
 package: buildAll
 	cargo package
-	cargo publish --dry-run
+	cargo publish --dry-run --registry default
 
 publish: package
-	CARGO_REGISTRIES_CRATES_IO_PROTOCOL=https cargo publish
+	cargo publish --registry default
