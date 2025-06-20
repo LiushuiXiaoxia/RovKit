@@ -6,3 +6,4 @@ pub mod jsonkit;
 pub mod logkit;
 pub mod processkit;
 pub mod stringkit;
+pub mod configkit;
