@@ -3,6 +3,14 @@ name = "rovkit"
 version = "0.1.0"
 edition = "2021"
 
+authors = ["xiaqiulei <xiaqiulei@gmail.com>"]
+description = "rust kit for my self"
+license = "Apache-2.0"
+repository = "https://github.com/LiushuiXiaoxia/RovKit"
+readme = "README.md"
+keywords = ["kit", "rovkit", "rust-kit", "crate"]
+categories = ["development-tools"]
+
 [lib]
 name = "rovkit"
 path = "src/lib.rs"
