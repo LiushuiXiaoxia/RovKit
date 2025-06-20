@@ -50,6 +50,7 @@ mod tests {
     fn test_run() {
         run("cd src && ls -alh").unwrap()
     }
+
     #[test]
     fn test_call() {
         let output = call("echo hello").unwrap();
