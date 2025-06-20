@@ -19,6 +19,10 @@ tokio = { version = "1", features = ["full"] }
 log = "0.4.27"
 env_logger = "0.11.8"
 tempfile = "3.20.0"
+sha2 = "0.11.0-rc.0"
+base64 = "0.22.1"
+hex = "0.4.3"
+md5 = "0.7"
 
 [features]
 yaml = ["serde_yaml"]
