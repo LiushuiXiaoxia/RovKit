@@ -9,6 +9,7 @@ pub mod idkit;
 pub(crate) mod internal;
 pub mod jsonkit;
 pub mod logkit;
+pub mod netkit;
 pub mod processkit;
 pub mod randkit;
 pub mod stringkit;

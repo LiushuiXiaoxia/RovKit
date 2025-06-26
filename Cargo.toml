@@ -34,6 +34,8 @@ md5 = "0.7"
 uuid = { version = "1.17.0", features = ["v4"] }
 rand = { version = "0.8", features = ["default"] }
 dotenvy = "0.15"
+hostname = "0.4.1"
+local-ip-address = "0.5"
 
 [features]
 yaml = ["serde_yaml"]
