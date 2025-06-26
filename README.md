@@ -16,7 +16,7 @@ cargo add rovkit
 
 ```toml
 [dependencies]
-rovkit = "0.0.1"
+rovkit = "0.0"
 ```
 
 # 简介
@@ -41,16 +41,56 @@ rovkit = "0.0.1"
 
 ### 核心模块开发（同步）
 
-* [ ] `stringkit`：字符串处理函数
-* [ ] `filekit`：文件读写、目录操作
-* [ ] `timekit`：时间日期操作
-* [ ] `convkit`：类型转换工具
-* [ ] `jsonkit`：JSON 读写与路径访问
-* [ ] `httpkit`：同步 HTTP 客户端封装
-* [ ] `processkit`：同步进程命令执行
-* [ ] `configkit`：配置文件加载（JSON优先，支持YAML/TOML）
-* [ ] `logkit`：日志初始化及打印封装
-* [ ] `cryptokit`：哈希和简单加密
+#selectedCode:README.md
+* [x] `stringkit`：字符串处理函数
+    - 字符串拼接、分割、替换
+    - Base64 编解码
+    - 正则匹配与提取
+
+* [x] `filekit`：文件读写、目录操作
+    - 文件是否存在、创建、删除、重命名
+    - 读取和写入文本/二进制文件
+    - 遍历目录、创建临时文件/目录
+
+* [x] `timekit`：时间日期操作
+    - 获取当前时间戳
+    - 时间格式化（ISO8601、RFC2822 等）
+    - 时间加减、比较、时区转换
+
+* [x] `convkit`：类型转换工具
+    - 基本类型转换（i32, u64, f32, String 等）
+    - Hex、Base64、UTF-8 转换
+    - 自定义结构体序列化/反序列化封装
+
+* [x] `jsonkit`：JSON 读写与路径访问
+    - JSON 序列化/反序列化（基于 serde）
+    - 支持通过 JSON Path 提取字段
+    - 支持嵌套结构修改与合并
+
+* [x] `httpkit`：同步 HTTP 客户端封装
+    - GET / POST 请求封装
+    - 设置 headers、timeout、代理等
+    - 返回状态码、响应内容解析
+
+* [x] `processkit`：同步进程命令执行
+    - 执行 shell 命令并获取输出
+    - 支持管道、标准输入输出重定向
+    - 超时控制、错误码捕获
+
+* [x] `configkit`：配置文件加载（JSON优先，支持YAML/TOML）
+    - 支持多格式配置文件解析（json/yml/toml）
+    - 环境变量覆盖机制
+    - 默认值设置与校验
+
+* [x] `logkit`：日志初始化及打印封装
+    - 支持 info、debug、warn、error 等级别
+    - 控制台和文件双输出
+    - 日志轮转、最大保留数量配置
+
+* [x] `cryptokit`：哈希和简单加密
+    - MD5、SHA1、SHA256 等摘要算法
+    - AES 对称加密（ECB/CBC/GCM 模式）
+    - HMAC、签名生成与验证
 
 ### 异步模块开发（可选）
 
@@ -62,12 +102,6 @@ rovkit = "0.0.1"
 * [ ] 编写单元测试，覆盖主要功能点
 * [ ] 编写示例代码，展示模块用法
 * [ ] 配置 CI/CD 自动化测试和构建
-
-### 性能优化与发布
-
-* [ ] 开启 Release 配置的 LTO 和 Codegen 优化
-* [ ] 使用 `cargo bloat` 分析体积热点，调整依赖
-* [ ] 发布第一个稳定版本（0.1.0）
 
 ### 未来扩展（长远计划）
 
