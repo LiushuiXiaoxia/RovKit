@@ -3,6 +3,7 @@ mod filekit_demo;
 mod idkit_demo;
 mod logkit_demo;
 mod processkit_demo;
+mod regkit_demo;
 mod stringkit_demo;
 
 fn main() {}
