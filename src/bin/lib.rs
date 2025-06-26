@@ -1,5 +1,6 @@
 mod configkit_demo;
 mod filekit_demo;
+mod idkit_demo;
 mod logkit_demo;
 mod processkit_demo;
 mod stringkit_demo;

@@ -5,6 +5,7 @@ clean:
 
 buildAll: clean
 	cargo build --release
+	cargo test
 
 package: buildAll
 	cargo package

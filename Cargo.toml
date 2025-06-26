@@ -31,6 +31,7 @@ sha2 = "0.11.0-rc.0"
 base64 = "0.22.1"
 hex = "0.4.3"
 md5 = "0.7"
+uuid = { version = "1.17.0", features = ["v4"] }
 
 [features]
 yaml = ["serde_yaml"]
