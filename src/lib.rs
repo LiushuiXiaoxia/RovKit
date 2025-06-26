@@ -16,3 +16,4 @@ pub mod randkit;
 pub mod stringkit;
 pub mod urlkit;
 mod iokit;
+mod compresskit;
