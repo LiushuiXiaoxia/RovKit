@@ -51,6 +51,47 @@ pub fn is_dir<P: AsRef<Path>>(path: P) -> bool {
     path.as_ref().is_dir()
 }
 
+/// 判断路径是否为软链接（符号链接）
+/// 返回 Ok(true) 表示是软链，Ok(false) 不是软链，Err 出错
+pub fn is_symlink<P: AsRef<Path>>(path: P) -> io::Result<bool> {
+    let metadata = fs::symlink_metadata(path)?;
+    Ok(metadata.file_type().is_symlink())
+}
+
+#[cfg(unix)]
+use std::os::unix::fs::symlink as symlink_unix;
+
+#[cfg(windows)]
+use std::os::windows::fs::{
+    symlink_dir as symlink_dir_windows, symlink_file as symlink_file_windows,
+};
+
+/// 创建软链接，支持文件和目录，跨平台
+pub fn create_symlink<P: AsRef<Path>, Q: AsRef<Path>>(original: P, link: Q) -> io::Result<()> {
+    let original = original.as_ref();
+    let link = link.as_ref();
+
+    if original.is_dir() {
+        #[cfg(unix)]
+        {
+            symlink_unix(original, link)
+        }
+        #[cfg(windows)]
+        {
+            symlink_dir_windows(original, link)
+        }
+    } else {
+        #[cfg(unix)]
+        {
+            symlink_unix(original, link)
+        }
+        #[cfg(windows)]
+        {
+            symlink_file_windows(original, link)
+        }
+    }
+}
+
 /// 创建目录（包括所有父目录）
 /// 返回 Ok(()) 或 io::Error
 pub fn create_dir_all<P: AsRef<Path>>(path: P) -> io::Result<()> {
@@ -170,5 +211,34 @@ mod tests {
         let temp_dir = create_temp_dir().unwrap();
         assert!(temp_dir.path().exists());
         // TempDir drop时自动删除
+    }
+
+    #[test]
+    fn test_is_symlink() {
+        use std::os::unix::fs::symlink;
+
+        let dir = tempdir().unwrap();
+        let file_path = dir.path().join("file.txt");
+        fs::write(&file_path, "hello").unwrap();
+
+        let link_path = dir.path().join("link.txt");
+        symlink(&file_path, &link_path).unwrap();
+
+        assert_eq!(is_symlink(&file_path).unwrap(), false);
+        assert_eq!(is_symlink(&link_path).unwrap(), true);
+    }
+
+    #[test]
+    fn test_create_symlink() {
+        let dir = tempdir().unwrap();
+
+        let file_path = dir.path().join("file.txt");
+        fs::write(&file_path, "hello").unwrap();
+
+        let link_path = dir.path().join("file_link.txt");
+        create_symlink(&file_path, &link_path).unwrap();
+
+        assert!(link_path.exists());
+        assert!(is_symlink(&link_path).unwrap());
     }
 }
