@@ -8,6 +8,7 @@ Rust kit for myself.
 [![Crates.io](https://img.shields.io/crates/v/rovkit.svg)](https://crates.io/crates/rovkit)
 [![Downloads](https://img.shields.io/crates/d/rovkit.svg)](https://crates.io/crates/rovkit)
 [![Docs.rs](https://img.shields.io/badge/docs.rs-rovkit-blue)](https://docs.rs/rovkit)
+![Rust CI](https://github.com/LiushuiXiaoxia/RovKit/actions/workflows/rust-ci.yml/badge.svg)
 
 
 ```shell
