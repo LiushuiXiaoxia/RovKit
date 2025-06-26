@@ -13,6 +13,7 @@ pub mod iokit;
 pub mod jsonkit;
 pub mod logkit;
 pub mod netkit;
+pub mod numberkit;
 pub mod oskit;
 pub mod processkit;
 pub mod randkit;
