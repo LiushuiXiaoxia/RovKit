@@ -105,7 +105,7 @@ pub fn remove_all<P: AsRef<Path>>(path: P) -> io::Result<()> {
     if !path.exists() {
         return Ok(());
     }
-    if path.is_file() {
+    if is_file(path) {
         fs::remove_file(path)
     } else {
         fs::remove_dir_all(path)

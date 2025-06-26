@@ -17,3 +17,4 @@ pub mod stringkit;
 pub mod urlkit;
 mod iokit;
 mod compresskit;
+mod filehashkit;

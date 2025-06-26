@@ -30,7 +30,7 @@ tempfile = "3.20.0"
 sha2 = "0.11.0-rc.0"
 base64 = "0.22.1"
 hex = "0.4.3"
-md5 = "0.7"
+md5 = "0.8"
 uuid = { version = "1.17.0", features = ["v4"] }
 rand = { version = "0.8", features = ["default"] }
 dotenvy = "0.15"
