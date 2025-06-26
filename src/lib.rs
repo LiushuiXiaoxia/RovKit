@@ -14,3 +14,4 @@ pub mod oskit;
 pub mod processkit;
 pub mod randkit;
 pub mod stringkit;
+pub mod urlkit;

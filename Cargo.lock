@@ -1307,6 +1307,7 @@ dependencies = [
  "sysinfo",
  "tempfile",
  "tokio",
+ "url",
  "uuid",
 ]
 
