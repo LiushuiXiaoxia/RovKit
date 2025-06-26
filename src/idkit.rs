@@ -16,10 +16,9 @@ pub fn uuid_v4() -> UUID {
 }
 
 mod tests {
-    use super::*;
-
     #[test]
-    fn test_snowflake_id() {
+    fn test_id_kit() {
+        use crate::idkit::{snowflake, uuid_v4};
         let snowflake = snowflake(1, 1);
         for _ in 0..1000 {
             let id = snowflake.gen_id();

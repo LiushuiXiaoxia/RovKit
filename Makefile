@@ -3,13 +3,14 @@
 clean:
 	cargo clean
 
-buildAll: clean
+.PHONY: build
+build: clean
 	cargo build --release
 
-test: buildAll
+test: build
 	cargo test
 
-package: buildAll test
+package: build test
 	cargo package
 	cargo publish --dry-run --registry default
 
