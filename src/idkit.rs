@@ -21,7 +21,7 @@ mod tests {
     #[test]
     fn test_snowflake_id() {
         let snowflake = snowflake(1, 1);
-        for i in 0..1000 {
+        for _ in 0..1000 {
             let id = snowflake.gen_id();
             let uuid = uuid_v4();
             println!("snowflake: {}", id);

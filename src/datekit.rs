@@ -86,8 +86,8 @@ pub mod arithmetic {
 
     #[test]
     fn test_diff_in_seconds() {
-        let dt1 = Local.ymd(2025, 6, 20).and_hms(12, 0, 0);
-        let dt2 = Local.ymd(2025, 6, 20).and_hms(11, 0, 0);
+        let dt1 = Local.with_ymd_and_hms(2025, 6, 20, 12, 0, 0).unwrap();
+        let dt2 = Local.with_ymd_and_hms(2025, 6, 20, 11, 0, 0).unwrap();
         assert_eq!(diff_in_seconds(dt1, dt2), 3600);
     }
 
@@ -133,7 +133,7 @@ pub mod arithmetic {
 
     /// 计算两个时间之间的天数差（绝对值）
     pub fn diff_in_days(dt1: DateTime<Local>, dt2: DateTime<Local>) -> i64 {
-        (dt1.date() - dt2.date()).num_days().abs()
+        (dt1.date_naive() - dt2.date_naive()).num_days().abs()
     }
 }
 
@@ -144,16 +144,17 @@ mod tests {
 
     #[test]
     fn test_add_sub_days() {
-        let dt = Local.ymd(2025, 6, 20).and_hms(12, 0, 0);
+        let dt = Local.with_ymd_and_hms(2025, 6, 20, 12, 0, 0).unwrap();
         let dt2 = arithmetic::add_days(dt, 5);
-        assert_eq!(dt2.date(), Local.ymd(2025, 6, 25));
+        let d3 = Local.with_ymd_and_hms(2025, 6, 25, 0, 0, 0).unwrap();
+        assert_eq!(dt2.date_naive(), d3.date_naive());
         let dt3 = arithmetic::sub_days(dt2, 5);
-        assert_eq!(dt3.date(), dt.date());
+        assert_eq!(dt3.date_naive(), dt.date_naive());
     }
 
     #[test]
     fn test_add_sub_hours() {
-        let dt = Local.ymd(2025, 6, 20).and_hms(12, 0, 0);
+        let dt = Local.with_ymd_and_hms(2025, 6, 20, 12, 0, 0).unwrap();
         let dt2 = arithmetic::add_hours(dt, 10);
         assert_eq!(dt2.hour(), 22);
         let dt3 = arithmetic::sub_hours(dt2, 10);
@@ -162,7 +163,7 @@ mod tests {
 
     #[test]
     fn test_add_sub_minutes() {
-        let dt = Local.ymd(2025, 6, 20).and_hms(12, 0, 0);
+        let dt = Local.with_ymd_and_hms(2025, 6, 20, 12, 0, 0).unwrap();
         let dt2 = arithmetic::add_minutes(dt, 30);
         assert_eq!(dt2.minute(), 30);
         let dt3 = arithmetic::sub_minutes(dt2, 30);
@@ -171,8 +172,8 @@ mod tests {
 
     #[test]
     fn test_diff_in_days() {
-        let dt1 = Local.ymd(2025, 6, 25).and_hms(0, 0, 0);
-        let dt2 = Local.ymd(2025, 6, 20).and_hms(23, 59, 59);
+        let dt1 = Local.with_ymd_and_hms(2025, 6, 25, 0, 0, 0).unwrap();
+        let dt2 = Local.with_ymd_and_hms(2025, 6, 20, 23, 59, 59).unwrap();
         assert_eq!(arithmetic::diff_in_days(dt1, dt2), 5);
     }
 }

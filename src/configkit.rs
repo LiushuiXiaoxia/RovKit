@@ -1,6 +1,6 @@
 use serde::de::DeserializeOwned;
 use std::fs;
-use std::io::{self, Read};
+use std::io::{self};
 use std::path::Path;
 
 /// 从 JSON 文件加载配置结构体

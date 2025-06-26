@@ -1,4 +1,4 @@
-use log::{debug, error, info, trace, warn, Level, LevelFilter};
+use log::{debug, error, info, trace, warn, LevelFilter};
 use std::sync::Once;
 
 static INIT: Once = Once::new();
