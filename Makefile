@@ -5,9 +5,11 @@ clean:
 
 buildAll: clean
 	cargo build --release
+
+test: buildAll
 	cargo test
 
-package: buildAll
+package: buildAll test
 	cargo package
 	cargo publish --dry-run --registry default
 
