@@ -10,6 +10,7 @@ pub(crate) mod internal;
 pub mod jsonkit;
 pub mod logkit;
 pub mod netkit;
+pub mod oskit;
 pub mod processkit;
 pub mod randkit;
 pub mod stringkit;
