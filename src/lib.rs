@@ -6,6 +6,7 @@ pub mod datekit;
 pub mod envkit;
 mod filehashkit;
 pub mod filekit;
+pub mod hashkit;
 pub mod httpkit;
 pub mod idkit;
 pub(crate) mod internal;

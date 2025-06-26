@@ -42,7 +42,10 @@ zip = "0.6"
 tar = "0.4"
 flate2 = "1.0"
 walkdir = "2.3"
-
+aes = "0.8"
+rsa = "0.10.0-rc.1"
+aes-gcm = { version = "0.10", features = ["aes"] }
+#block-modes = "0.9"
 
 [features]
 yaml = ["serde_yaml"]

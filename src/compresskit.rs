@@ -3,7 +3,7 @@ use flate2::write::GzEncoder;
 use flate2::Compression;
 use std::fs::{self, File};
 use std::io::{self, BufWriter};
-use std::path::{Path, PathBuf};
+use std::path::Path;
 use tar::{Archive, Builder};
 use walkdir::WalkDir;
 use zip::{write::FileOptions, ZipArchive, ZipWriter};
@@ -46,15 +46,15 @@ pub fn unzip<P: AsRef<Path>>(zip_file: P, dst_dir: P) -> io::Result<()> {
 
     for i in 0..archive.len() {
         let mut file = archive.by_index(i)?;
-        let outpath = dst_dir.as_ref().join(file.sanitized_name());
+        let out_path = dst_dir.as_ref().join(file.mangled_name());
 
         if file.is_dir() {
-            fs::create_dir_all(&outpath)?;
+            fs::create_dir_all(&out_path)?;
         } else {
-            if let Some(parent) = outpath.parent() {
+            if let Some(parent) = out_path.parent() {
                 fs::create_dir_all(parent)?;
             }
-            let mut outfile = File::create(&outpath)?;
+            let mut outfile = File::create(&out_path)?;
             io::copy(&mut file, &mut outfile)?;
         }
     }
@@ -62,7 +62,7 @@ pub fn unzip<P: AsRef<Path>>(zip_file: P, dst_dir: P) -> io::Result<()> {
 }
 
 /// TAR.GZ 压缩：目录或文件压缩为 tar.gz
-pub fn targz<P: AsRef<Path>>(src_path: P, dst_tar_gz: P) -> io::Result<()> {
+pub fn tar_gz<P: AsRef<Path>>(src_path: P, dst_tar_gz: P) -> io::Result<()> {
     let src_path = src_path.as_ref();
     let tar_gz = File::create(dst_tar_gz)?;
     let enc = GzEncoder::new(tar_gz, Compression::default());
@@ -78,7 +78,7 @@ pub fn targz<P: AsRef<Path>>(src_path: P, dst_tar_gz: P) -> io::Result<()> {
 }
 
 /// TAR.GZ 解压
-pub fn untargz<P: AsRef<Path>>(tar_gz_file: P, dst_dir: P) -> io::Result<()> {
+pub fn untar_gz<P: AsRef<Path>>(tar_gz_file: P, dst_dir: P) -> io::Result<()> {
     let tar_gz = File::open(tar_gz_file)?;
     let dec = GzDecoder::new(tar_gz);
     let mut archive = Archive::new(dec);
@@ -119,7 +119,7 @@ mod tests {
     use tempfile::tempdir;
 
     #[test]
-    fn test_zip_compress_decompress() {
+    fn test_zip() {
         let dir = tempdir().unwrap();
         let src_dir = dir.path().join("src");
         fs::create_dir_all(&src_dir).unwrap();
@@ -138,7 +138,7 @@ mod tests {
     }
 
     #[test]
-    fn test_targz_compress_decompress() {
+    fn test_targz() {
         let dir = tempdir().unwrap();
         let src_dir = dir.path().join("src");
         fs::create_dir_all(&src_dir).unwrap();
@@ -147,17 +147,17 @@ mod tests {
         writeln!(f, "hello tar.gz").unwrap();
 
         let tar_gz_path = dir.path().join("archive.tar.gz");
-        targz(&src_dir, &tar_gz_path).unwrap();
+        tar_gz(&src_dir, &tar_gz_path).unwrap();
 
         let untar_dir = dir.path().join("untar");
-        untargz(&tar_gz_path, &untar_dir).unwrap();
+        untar_gz(&tar_gz_path, &untar_dir).unwrap();
 
         let content = fs::read_to_string(untar_dir.join("hello.txt")).unwrap();
         assert_eq!(content.trim(), "hello tar.gz");
     }
 
     #[test]
-    fn test_tar_compress_decompress() {
+    fn test_tar() {
         let dir = tempdir().unwrap();
         let src_dir = dir.path().join("src");
         fs::create_dir_all(&src_dir).unwrap();
