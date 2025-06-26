@@ -9,7 +9,7 @@ use walkdir::WalkDir;
 use zip::{write::FileOptions, ZipArchive, ZipWriter};
 
 /// ZIP 文件压缩：将目录或文件压缩成 zip
-pub fn zip_compress<P: AsRef<Path>>(src_path: P, dst_zip: P) -> io::Result<()> {
+pub fn zip<P: AsRef<Path>>(src_path: P, dst_zip: P) -> io::Result<()> {
     let src_path = src_path.as_ref();
     let dst_file = File::create(&dst_zip)?;
     let mut zip = ZipWriter::new(BufWriter::new(dst_file));
@@ -40,7 +40,7 @@ pub fn zip_compress<P: AsRef<Path>>(src_path: P, dst_zip: P) -> io::Result<()> {
 }
 
 /// ZIP 文件解压
-pub fn zip_decompress<P: AsRef<Path>>(zip_file: P, dst_dir: P) -> io::Result<()> {
+pub fn unzip<P: AsRef<Path>>(zip_file: P, dst_dir: P) -> io::Result<()> {
     let zip_file = File::open(zip_file)?;
     let mut archive = ZipArchive::new(zip_file)?;
 
@@ -62,7 +62,7 @@ pub fn zip_decompress<P: AsRef<Path>>(zip_file: P, dst_dir: P) -> io::Result<()>
 }
 
 /// TAR.GZ 压缩：目录或文件压缩为 tar.gz
-pub fn targz_compress<P: AsRef<Path>>(src_path: P, dst_tar_gz: P) -> io::Result<()> {
+pub fn targz<P: AsRef<Path>>(src_path: P, dst_tar_gz: P) -> io::Result<()> {
     let src_path = src_path.as_ref();
     let tar_gz = File::create(dst_tar_gz)?;
     let enc = GzEncoder::new(tar_gz, Compression::default());
@@ -78,7 +78,7 @@ pub fn targz_compress<P: AsRef<Path>>(src_path: P, dst_tar_gz: P) -> io::Result<
 }
 
 /// TAR.GZ 解压
-pub fn targz_decompress<P: AsRef<Path>>(tar_gz_file: P, dst_dir: P) -> io::Result<()> {
+pub fn untargz<P: AsRef<Path>>(tar_gz_file: P, dst_dir: P) -> io::Result<()> {
     let tar_gz = File::open(tar_gz_file)?;
     let dec = GzDecoder::new(tar_gz);
     let mut archive = Archive::new(dec);
@@ -88,7 +88,7 @@ pub fn targz_decompress<P: AsRef<Path>>(tar_gz_file: P, dst_dir: P) -> io::Resul
 
 /// 纯 tar 压缩（不带 gzip）
 /// 支持单文件或目录压缩
-pub fn tar_compress<P: AsRef<Path>>(src_path: P, dst_tar: P) -> io::Result<()> {
+pub fn tar<P: AsRef<Path>>(src_path: P, dst_tar: P) -> io::Result<()> {
     let src_path = src_path.as_ref();
     let tar_file = File::create(dst_tar)?;
     let mut tar_builder = Builder::new(tar_file);
@@ -104,7 +104,7 @@ pub fn tar_compress<P: AsRef<Path>>(src_path: P, dst_tar: P) -> io::Result<()> {
 }
 
 /// 纯 tar 解压（不带 gzip）
-pub fn tar_decompress<P: AsRef<Path>>(tar_file: P, dst_dir: P) -> io::Result<()> {
+pub fn untar<P: AsRef<Path>>(tar_file: P, dst_dir: P) -> io::Result<()> {
     let tar_file = File::open(tar_file)?;
     let mut archive = Archive::new(tar_file);
     archive.unpack(dst_dir)?;
@@ -128,10 +128,10 @@ mod tests {
         writeln!(f, "hello zip").unwrap();
 
         let zip_path = dir.path().join("archive.zip");
-        zip_compress(&src_dir, &zip_path).unwrap();
+        zip(&src_dir, &zip_path).unwrap();
 
         let unzip_dir = dir.path().join("unzip");
-        zip_decompress(&zip_path, &unzip_dir).unwrap();
+        unzip(&zip_path, &unzip_dir).unwrap();
 
         let content = fs::read_to_string(unzip_dir.join("hello.txt")).unwrap();
         assert_eq!(content.trim(), "hello zip");
@@ -147,10 +147,10 @@ mod tests {
         writeln!(f, "hello tar.gz").unwrap();
 
         let tar_gz_path = dir.path().join("archive.tar.gz");
-        targz_compress(&src_dir, &tar_gz_path).unwrap();
+        targz(&src_dir, &tar_gz_path).unwrap();
 
         let untar_dir = dir.path().join("untar");
-        targz_decompress(&tar_gz_path, &untar_dir).unwrap();
+        untargz(&tar_gz_path, &untar_dir).unwrap();
 
         let content = fs::read_to_string(untar_dir.join("hello.txt")).unwrap();
         assert_eq!(content.trim(), "hello tar.gz");
@@ -167,10 +167,10 @@ mod tests {
         writeln!(f, "hello tar").unwrap();
 
         let tar_path = dir.path().join("archive.tar");
-        tar_compress(&src_dir, &tar_path).unwrap();
+        tar(&src_dir, &tar_path).unwrap();
 
         let untar_dir = dir.path().join("untar");
-        tar_decompress(&tar_path, &untar_dir).unwrap();
+        untar(&tar_path, &untar_dir).unwrap();
 
         let content = fs::read_to_string(untar_dir.join("hello.txt")).unwrap();
         assert_eq!(content.trim(), "hello tar");
