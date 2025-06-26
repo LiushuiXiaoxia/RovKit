@@ -33,6 +33,7 @@ hex = "0.4.3"
 md5 = "0.7"
 uuid = { version = "1.17.0", features = ["v4"] }
 rand = { version = "0.8", features = ["default"] }
+dotenvy = "0.15"
 
 [features]
 yaml = ["serde_yaml"]
