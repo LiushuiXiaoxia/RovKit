@@ -1,12 +1,17 @@
 use log::LevelFilter;
-use rovkit::*;
+use rovkit::logkit::init_log;
+use rovkit::{log_debug, log_error, log_info, log_warn};
 
 #[allow(dead_code)]
 fn main() {
-    logkit::init_log(LevelFilter::Debug);
-    logkit::log_trace("Debugging mode enabled");
-    logkit::log_debug("Debugging mode enabled");
-    logkit::log_info("Starting application");
-    logkit::log_warn("Starting application");
-    logkit::log_error("Something went wrong ~~~");
+    init_log(LevelFilter::Debug);
+    for i in 1..100 {
+        log_debug!("Debugging mode enabled, i = {}", i);
+        log_info!("Debugging mode enabled, i = {}", i);
+        log_warn!("Debugging mode enabled, i = {}", i);
+        log_error!("Debugging mode enabled, i = {}", i);
+    }
+    log_info!("Starting application");
+    log_warn!("Starting application");
+    log_error!("Something went wrong ~~~");
 }

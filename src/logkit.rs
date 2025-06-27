@@ -46,11 +46,51 @@ pub fn log_debug(msg: &str) {
 pub fn log_trace(msg: &str) {
     trace!("{}", msg);
 }
-// 
+
+/// 快速记录 info 级别日志
+#[macro_export]
+macro_rules! log_info {
+    ($($arg:tt)*) => {
+       log::info!("{}", format!($($arg)*));
+    };
+}
+
+/// 快速记录 warn 级别日志
+#[macro_export]
+macro_rules! log_warn {
+    ($($arg:tt)*) => {
+       log:: warn!("{}", format!($($arg)*));
+    };
+}
+
+/// 快速记录 error 级别日志
+#[macro_export]
+macro_rules! log_error {
+    ($($arg:tt)*) => {
+        log::error!("{}", format!($($arg)*));
+    };
+}
+
+/// 快速记录 debug 级别日志
+#[macro_export]
+macro_rules! log_debug {
+    ($($arg:tt)*) => {
+        log::debug!("{}", format!($($arg)*));
+    };
+}
+
+/// 快速记录 trace 级别日志
+#[macro_export]
+macro_rules! log_trace {
+    ($($arg:tt)*) => {
+        log::trace!("{}", format!($($arg)*));
+    };
+}
+//
 // #[cfg(test)]
 // mod tests {
 //     use super::*;
-// 
+//
 //     #[test]
 //     fn test_log_macros() {
 //         init_log(LevelFilter::Info);
