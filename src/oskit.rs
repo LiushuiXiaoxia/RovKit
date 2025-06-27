@@ -84,22 +84,22 @@ pub fn get_cpu_cores() -> usize {
 }
 
 #[cfg(target_os = "windows")]
-fn platform_name() -> &'static str {
+pub fn platform_name() -> &'static str {
     "windows"
 }
 
 #[cfg(target_os = "macos")]
-fn platform_name() -> &'static str {
+pub fn platform_name() -> &'static str {
     "macos"
 }
 
 #[cfg(target_os = "linux")]
-fn platform_name() -> &'static str {
+pub fn platform_name() -> &'static str {
     "linux"
 }
 
 #[cfg(not(any(target_os = "windows", target_os = "macos", target_os = "linux")))]
-fn platform_name() -> &'static str {
+pub fn platform_name() -> &'static str {
     "unknown"
 }
 

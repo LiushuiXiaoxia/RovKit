@@ -74,11 +74,10 @@ pub mod rsakit {
 }
 
 mod tests {
-    use super::*;
-    use hex;
 
     #[test]
     fn test_aes() {
+        use super::*;
         println!("=== AES 加解密示例 ===");
 
         // 生成 AES 密钥和 IV
@@ -100,6 +99,8 @@ mod tests {
 
     #[test]
     fn test_rsa() {
+        use super::*;
+
         println!("=== RSA 加解密示例 ===");
 
         // 生成 RSA 密钥对
