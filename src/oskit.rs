@@ -101,9 +101,22 @@ mod tests {
         }
     }
 
+    #[cfg(any(target_os = "macos", target_os = "linux"))]
     #[test]
     fn test_disk_usage() {
         let usage = get_disk_usage("/");
+        assert!(usage.is_some());
+        let u = usage.unwrap();
+        println!(
+            "Disk usage at {}: total={} avail={} used={}",
+            u.mount_point, u.total, u.available, u.used
+        );
+    }
+
+    #[cfg(any(target_os = "windows"))]
+    #[test]
+    fn test_disk_usage_window() {
+        let usage = get_disk_usage("C:\\");
         assert!(usage.is_some());
         let u = usage.unwrap();
         println!(
