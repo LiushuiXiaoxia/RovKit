@@ -46,6 +46,7 @@ aes = "0.8"
 rsa = "0.10.0-rc.1"
 aes-gcm = { version = "0.10", features = ["aes"] }
 #block-modes = "0.9"
+cron = "0.12"
 
 [features]
 yaml = ["serde_yaml"]

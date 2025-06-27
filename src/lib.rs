@@ -11,6 +11,7 @@ pub mod httpkit;
 pub mod idkit;
 pub mod internal;
 pub mod iokit;
+pub mod jobkit;
 pub mod jsonkit;
 pub mod logkit;
 pub mod netkit;
