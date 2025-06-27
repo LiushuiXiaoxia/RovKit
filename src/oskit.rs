@@ -83,6 +83,38 @@ pub fn get_cpu_cores() -> usize {
     sys.cpus().len()
 }
 
+#[cfg(target_os = "windows")]
+fn platform_name() -> &'static str {
+    "windows"
+}
+
+#[cfg(target_os = "macos")]
+fn platform_name() -> &'static str {
+    "macos"
+}
+
+#[cfg(target_os = "linux")]
+fn platform_name() -> &'static str {
+    "linux"
+}
+
+#[cfg(not(any(target_os = "windows", target_os = "macos", target_os = "linux")))]
+fn platform_name() -> &'static str {
+    "unknown"
+}
+
+pub fn is_windows() -> bool {
+    cfg!(target_os = "windows")
+}
+
+pub fn is_macos() -> bool {
+    cfg!(target_os = "macos")
+}
+
+pub fn is_linux() -> bool {
+    cfg!(target_os = "linux")
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -140,5 +172,13 @@ mod tests {
         let cores = get_cpu_cores();
         println!("CPU Cores: {}", cores);
         assert!(cores > 0);
+    }
+
+    #[test]
+    fn test_os() {
+        println!("platform = {}", platform_name());
+        println!("is_macos = {}", is_macos());
+        println!("is_linux = {}", is_linux());
+        println!("is_windows = {}", is_windows());
     }
 }
