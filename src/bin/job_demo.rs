@@ -1,6 +1,7 @@
 use rovkit::jobkit::{JobKit, JobType};
 use std::time::Duration;
 
+#[allow(dead_code)]
 #[tokio::main]
 async fn main() {
     env_logger::init();

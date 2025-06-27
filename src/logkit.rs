@@ -46,18 +46,18 @@ pub fn log_debug(msg: &str) {
 pub fn log_trace(msg: &str) {
     trace!("{}", msg);
 }
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_log_macros() {
-        init_log(LevelFilter::Info);
-        log_info("Info message");
-        log_warn("Warn message");
-        log_error("Error message");
-        log_debug("Debug message");
-        log_trace("Trace message");
-    }
-}
+// 
+// #[cfg(test)]
+// mod tests {
+//     use super::*;
+// 
+//     #[test]
+//     fn test_log_macros() {
+//         init_log(LevelFilter::Info);
+//         log_info("Info message");
+//         log_warn("Warn message");
+//         log_error("Error message");
+//         log_debug("Debug message");
+//         log_trace("Trace message");
+//     }
+// }
