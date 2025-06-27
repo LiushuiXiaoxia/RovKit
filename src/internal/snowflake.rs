@@ -1,5 +1,4 @@
-// snowflake.rs
-use std::sync::{Mutex, Arc};
+use std::sync::{Arc, Mutex};
 use std::time::{SystemTime, UNIX_EPOCH};
 
 const EPOCH: u64 = 1609459200000000; // 微秒级时间戳: 2021-01-01 00:00:00 UTC

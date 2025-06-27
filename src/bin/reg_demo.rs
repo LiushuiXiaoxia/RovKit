@@ -1,5 +1,6 @@
 use rovkit::regkit::*;
 
+#[allow(dead_code)]
 fn main() {
     let text = "My email is abc@example.com and 123@qq.com";
     // Rust字符串中反斜杠用单个 \

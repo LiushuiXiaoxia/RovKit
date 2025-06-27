@@ -215,14 +215,12 @@ mod tests {
 
     #[test]
     fn test_is_symlink() {
-        use std::os::unix::fs::symlink;
-
         let dir = tempdir().unwrap();
         let file_path = dir.path().join("file.txt");
         fs::write(&file_path, "hello").unwrap();
 
         let link_path = dir.path().join("link.txt");
-        symlink(&file_path, &link_path).unwrap();
+        create_symlink(&file_path, &link_path).unwrap();
 
         assert_eq!(is_symlink(&file_path).unwrap(), false);
         assert_eq!(is_symlink(&link_path).unwrap(), true);

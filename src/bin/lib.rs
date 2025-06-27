@@ -1,9 +1,9 @@
-mod configkit_demo;
-mod filekit_demo;
-mod idkit_demo;
-mod logkit_demo;
-mod processkit_demo;
-mod regkit_demo;
-mod stringkit_demo;
+mod config_demo;
+mod file_demo;
+mod id_demo;
+mod log_demo;
+mod process_demo;
+mod reg_demo;
+mod string_demo;
 
 fn main() {}

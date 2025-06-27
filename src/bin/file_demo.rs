@@ -1,3 +1,4 @@
+#[allow(dead_code)]
 fn main() {}
 
 #[cfg(test)]
@@ -5,7 +6,7 @@ mod tests {
     use rovkit::filekit;
 
     #[test]
-    fn test_filekit() {
+    fn test_file() {
         let path = "build/test.txt";
         let parent = filekit::parent_dir(path).unwrap();
         if !filekit::exists(&parent) {

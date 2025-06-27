@@ -1,5 +1,6 @@
 use rovkit::stringkit;
 
+#[allow(dead_code)]
 fn main() {
     let s = "  Hello_World testCase  ";
 

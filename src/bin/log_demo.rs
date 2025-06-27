@@ -1,6 +1,7 @@
 use log::LevelFilter;
 use rovkit::*;
 
+#[allow(dead_code)]
 fn main() {
     logkit::init_log(LevelFilter::Debug);
     logkit::log_trace("Debugging mode enabled");
