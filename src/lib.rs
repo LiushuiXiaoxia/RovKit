@@ -9,7 +9,7 @@ pub mod filekit;
 pub mod hashkit;
 pub mod httpkit;
 pub mod idkit;
-pub(crate) mod internal;
+pub mod internal;
 pub mod iokit;
 pub mod jsonkit;
 pub mod logkit;
