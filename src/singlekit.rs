@@ -38,10 +38,18 @@ impl<T> Default for Single<T> {
 unsafe impl<T> Sync for Single<T> where T: Sync {}
 /// 通用单例包装器
 /// ```
-///  singleton!(pub CONFIG_INSTANCE:Config = Config {
-///     name: "test".to_string(),
-///  });
+/// use rovkit::*;
 ///
+/// #[derive(Debug)]
+/// struct Config {
+///     name: String,
+/// }
+///
+/// singleton!(pub CONFIG_INSTANCE:Config = Config {
+///    name: "test".to_string(),
+/// });
+///
+///```
 ///
 #[macro_export]
 macro_rules! singleton {
@@ -63,12 +71,13 @@ macro_rules! singleton {
 
 #[cfg(test)]
 mod tests {
-    #[derive(Debug)]
-    struct Config {
-        pub name: String,
-    }
+
     #[test]
     fn test_single() {
+        #[derive(Debug)]
+        struct Config {
+            pub name: String,
+        }
         use crate::singlekit::Single;
         static CONFIG: Single<Config> = Single::new();
         CONFIG.get_or_init(|| Config {
@@ -88,18 +97,27 @@ mod tests {
         }
     }
 
-    singleton!(pub CONFIG_INSTANCE:Config = Config {
-        name: "test".to_string(),
-    });
     #[test]
     fn test_single2() {
-        let mut config = Config::single().lock().unwrap();
-        println!("{:?}", config);
-        config.name = "test2".to_string();
-        println!("{:?}", config);
+        #[derive(Debug)]
+        struct Config {
+            pub name: String,
+        }
 
-        let mut c = CONFIG_INSTANCE.lock().unwrap();
-        c.name = "test3".to_string();
-        print!("config: {:?}", c);
+        singleton!(pub CONFIG_INSTANCE:Config = Config {
+            name: "test".to_string(),
+        });
+        {
+            let mut config = Config::single().lock().unwrap();
+            println!("{:?}", config);
+            config.name = "test2".to_string();
+            println!("{:?}", config);
+        }
+
+        {
+            let mut c = CONFIG_INSTANCE.lock().unwrap();
+            c.name = "test3".to_string();
+            print!("config: {:?}", c);
+        }
     }
 }

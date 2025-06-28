@@ -6,6 +6,12 @@ fn main() {
     println!("config: {:?}", config);
     config.name = "test".to_string();
     println!("config: {:?}", config);
+
+    config.name = "test2".to_string();
+    println!("config: {:?}", config);
+
+    config.name = "test3".to_string();
+    println!("config: {:?}", config);
 }
 
 #[derive(Debug)]
