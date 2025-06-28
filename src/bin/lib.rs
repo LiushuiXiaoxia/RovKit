@@ -7,4 +7,6 @@ mod process_demo;
 mod reg_demo;
 mod string_demo;
 
+mod single_demo;
+
 fn main() {}
