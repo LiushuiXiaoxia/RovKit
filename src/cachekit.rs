@@ -1,6 +1,8 @@
-use crate::internal::cache_fifo::FifoCache;
-use crate::internal::cache_lru::LruCache;
+use crate::cache::cache_fifo::FifoCache;
+use crate::cache::cache_lru::LruCache;
+use crate::cache::cache_time::TimedCache;
 use std::boxed::Box;
+use std::time::Duration;
 
 pub trait Cache<K, V> {
     fn get(&mut self, key: &K) -> Option<&V>;
@@ -24,6 +26,14 @@ where
     V: 'static,
 {
     Box::new(LruCache::new(capacity))
+}
+
+pub fn time_cache<K, V>(timeout_secs: u64) -> TimedCache<K, V>
+where
+    K: Eq + std::hash::Hash + Clone,
+    V: 'static,
+{
+    TimedCache::new(Duration::from_secs(timeout_secs))
 }
 
 #[cfg(test)]
@@ -55,6 +65,26 @@ mod tests {
             assert_eq!(lru_cache.get(&1), Some(&"one"));
             assert_eq!(lru_cache.get(&2), None);
             assert_eq!(lru_cache.get(&3), Some(&"three"))
+        }
+    }
+
+    mod time_cache {
+        #[cfg(test)]
+        mod tests {
+            use crate::cachekit::time_cache;
+            use std::thread::sleep;
+            use std::time::Duration;
+
+            #[test]
+            fn test_cache() {
+                let mut cache = time_cache(2);
+                cache.put("hello", "world");
+                println!("{:?}", cache.get(&"hello")); // Some("world")
+
+                sleep(Duration::from_secs(3));
+                println!("{:?}", cache.get(&"hello")); // None，已超时
+                assert_eq!(cache.get(&"hello"), None);
+            }
         }
     }
 }
