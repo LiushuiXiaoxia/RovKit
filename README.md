@@ -5,11 +5,11 @@
 Rust kit for myself.
 
 # 使用姿势
+
 [![Crates.io](https://img.shields.io/crates/v/rovkit.svg)](https://crates.io/crates/rovkit)
 [![Downloads](https://img.shields.io/crates/d/rovkit.svg)](https://crates.io/crates/rovkit)
 [![Docs.rs](https://img.shields.io/badge/docs.rs-rovkit-blue)](https://docs.rs/rovkit)
 ![Rust CI](https://github.com/LiushuiXiaoxia/RovKit/actions/workflows/rust-ci.yml/badge.svg)
-
 
 ```shell
 cargo add rovkit
@@ -20,15 +20,15 @@ cargo add rovkit
 rovkit = "0.0"
 ```
 
-# 简介
+# 简介和
 
-* **项目定位**：一个 Rust 语言的全家桶工具库，提供字符串、时间、JSON、类型转换、HTTP、进程、文件、配置、日志、加密、工具函数等常用功能模块。
+* **项目定位**：一个 Rust 语言的全家桶工具库，提供字符串、时间、JSON、HTTP、进程、文件、配置、日志、加密、工具函数等常用功能模块.
+* **愿景使命**：参考了 java, go, python 等语言，结合 Rust 特点做定制化设计，方便其他 Java，go，python等开发快速入门。
 * **模块命名**：统一用 `xxxkit` 命名规范，同步模块如 `httpkit`，异步模块简写为 `ahttpkit` 等。
 * **异步设计**：采用同步优先、异步可选的架构，通过 feature 开关切换，避免异步复杂度传递。
 * **依赖管理**：使用 feature 控制依赖，按需编译，减小体积。
-* **性能优化**：建议开启 LTO 和 release 模式优化，利用 Rust 自带的 dead code elimination，控制二进制大小。
 * **代码风格**：模块职责清晰，功能单一，易于维护和扩展。
-* **生态对比**：参考了 Java 全家桶及混淆优化经验，结合 Rust 特点做定制化设计。
+* **性能优化**：建议开启 LTO 和 release 模式优化，利用 Rust 自带的 dead code elimination，控制二进制大小。
 
 ---
 
@@ -43,6 +43,7 @@ rovkit = "0.0"
 ### 核心模块开发（同步）
 
 #selectedCode:README.md
+
 * [x] `stringkit`：字符串处理函数
     - 字符串拼接、分割、替换
     - Base64 编解码
