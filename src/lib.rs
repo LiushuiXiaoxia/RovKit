@@ -1,3 +1,4 @@
+pub mod collectionkit;
 pub mod compresskit;
 pub mod configkit;
 pub mod convkit;
@@ -9,7 +10,7 @@ pub mod filekit;
 pub mod hashkit;
 pub mod httpkit;
 pub mod idkit;
-pub mod internal;
+mod internal;
 pub mod iokit;
 pub mod jobkit;
 pub mod jsonkit;

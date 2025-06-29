@@ -1,1 +1,2 @@
-pub mod snowflake;
+pub(crate) mod snowflake;
+
