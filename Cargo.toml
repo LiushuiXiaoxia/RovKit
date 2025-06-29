@@ -1,6 +1,6 @@
 [package]
 name = "rovkit"
-version = "0.0.4"
+version = "0.0.5"
 edition = "2021"
 
 authors = ["xiaqiulei <xiaqiulei@gmail.com>"]
