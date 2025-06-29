@@ -1,3 +1,4 @@
+pub mod cachekit;
 pub mod collectionkit;
 pub mod compresskit;
 pub mod configkit;
