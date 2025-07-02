@@ -12,7 +12,7 @@ pub mod filekit;
 pub mod hashkit;
 pub mod httpkit;
 pub mod idkit;
-mod internal;
+pub mod internal;
 pub mod iokit;
 pub mod jobkit;
 pub mod jsonkit;

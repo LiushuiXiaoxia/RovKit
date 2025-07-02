@@ -7,6 +7,7 @@ mod conv_test;
 
 mod collection_test;
 mod compress_test;
+mod concurrent_test;
 mod crypto_test;
 mod date_test;
 mod env_test;
