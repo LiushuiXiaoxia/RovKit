@@ -4,3 +4,6 @@ mod config_test;
 mod url_test;
 
 mod conv_test;
+
+mod crypto_test;
+mod date_test;
