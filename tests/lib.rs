@@ -5,6 +5,7 @@ mod url_test;
 
 mod conv_test;
 
+mod collection_test;
 mod compress_test;
 mod crypto_test;
 mod date_test;
