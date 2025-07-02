@@ -11,6 +11,7 @@ mod env_test;
 mod id_test;
 mod job_test;
 mod json_test;
+mod os_test;
 mod process_test;
 mod rand_test;
 mod reg_test;
