@@ -1,6 +1,3 @@
-#[allow(dead_code)]
-fn main() {}
-
 #[cfg(test)]
 mod tests {
     use rovkit::filekit;

@@ -5,9 +5,11 @@ mod url_test;
 
 mod conv_test;
 
+mod compress_test;
 mod crypto_test;
 mod date_test;
 mod env_test;
+mod file_demo;
 mod filehash_test;
 mod hash_test;
 mod http_test;
@@ -19,6 +21,7 @@ mod log_test;
 mod net_test;
 mod number_test;
 mod os_test;
+mod process_demo;
 mod process_test;
 mod rand_test;
 mod reg_test;
