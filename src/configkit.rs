@@ -46,8 +46,3 @@ mod tests {
         assert!(config.debug);
     }
 }
-
-// 示例：
-/*
-
-*/
