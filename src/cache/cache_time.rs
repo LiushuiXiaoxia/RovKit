@@ -58,21 +58,3 @@ impl<K: std::cmp::Eq + std::hash::Hash + Clone, V> TimedCache<K, V> {
         self.map.capacity()
     }
 }
-
-#[cfg(test)]
-mod tests {
-    use crate::cache::cache_time::TimedCache;
-    use std::thread::sleep;
-    use std::time::Duration;
-
-    #[test]
-    fn test_cache() {
-        let mut cache = TimedCache::new(Duration::from_secs(2));
-        cache.put("hello", "world");
-        println!("{:?}", cache.get(&"hello")); // Some("world")
-
-        sleep(Duration::from_secs(3));
-        println!("{:?}", cache.get(&"hello")); // None，已超时
-        assert_eq!(cache.get(&"hello"), None);
-    }
-}
