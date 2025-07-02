@@ -12,6 +12,7 @@ mod filehash_test;
 mod hash_test;
 mod http_test;
 mod id_test;
+mod io_test;
 mod job_test;
 mod json_test;
 mod log_test;
