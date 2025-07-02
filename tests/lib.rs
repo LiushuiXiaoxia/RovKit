@@ -11,6 +11,7 @@ mod env_test;
 mod id_test;
 mod job_test;
 mod json_test;
+mod log_test;
 mod net_test;
 mod number_test;
 mod os_test;
