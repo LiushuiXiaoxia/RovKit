@@ -8,3 +8,4 @@ mod conv_test;
 mod crypto_test;
 mod date_test;
 mod env_test;
+mod id_test;

@@ -13,18 +13,3 @@ pub type UUID = Uuid;
 pub fn uuid_v4() -> UUID {
     Uuid::new_v4()
 }
-
-mod tests {
-
-    #[test]
-    fn test_id_kit() {
-        use crate::idkit::{snowflake_id, uuid_v4};
-        let sf = snowflake_id(1, 1);
-        for _ in 0..1000 {
-            let id = sf.gen_id();
-            let uuid = uuid_v4();
-            println!("snowflake: {}", id);
-            println!("uuid = {}", uuid);
-        }
-    }
-}
