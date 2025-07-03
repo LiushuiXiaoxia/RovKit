@@ -1,9 +1,9 @@
-mod id_demo;
-mod job_demo;
-mod log_demo;
-mod reg_demo;
-mod string_demo;
-
-mod single_demo;
+mod demo_env;
+mod demo_id;
+mod demo_job;
+mod demo_log;
+mod demo_reg;
+mod demo_single;
+mod demo_string;
 
 fn main() {}
